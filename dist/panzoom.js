@@ -299,7 +299,7 @@ function createPanZoom(domElement, options) {
     if (diff > 0) {
       transform.x += diff;
       adjusted = true;
-    }
+    }  
     // check the other side:
     diff = boundingBox.right - clientRect.left;
     if (diff < 0) {
@@ -395,15 +395,8 @@ function createPanZoom(domElement, options) {
 
     transform.x = size.x - ratio * (size.x - transform.x);
     transform.y = size.y - ratio * (size.y - transform.y);
-
-    // TODO: https://github.com/anvaka/panzoom/issues/112
-    if (bounds && boundsPadding === 1 && minZoom === 1) {
-      transform.scale *= ratio;
-      keepTransformInsideBounds();
-    } else {
-      var transformAdjusted = keepTransformInsideBounds();
-      if (!transformAdjusted) transform.scale *= ratio;
-    }
+    transform.scale *= ratio;
+    keepTransformInsideBounds();
 
     triggerEvent('zoom');
 
