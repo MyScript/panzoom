@@ -996,7 +996,6 @@ function autoRun() {
       return;
     }
     var options = collectOptions(panzoomScript);
-    console.log(options);
     window[globalName] = createPanZoom(el, options);
   }
 
